@@ -64,8 +64,8 @@ abstract class TurtleAbstraction implements TurtleContract
             'description' => $this->description,
             'avatar' => $this->avatar,
             'health_points' => $this->healthPoints,
-            'default_attack' => $this->attack(),
-            'default_damage_reaction' =>  $this->eventLogs,
+//            'default_attack' => $this->attack(),
+//            'default_damage_reaction' =>  $this->eventLogs,
         ];
     }
 
