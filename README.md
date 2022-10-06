@@ -3,9 +3,10 @@
 - **Enums**
 - **Interfaces**
 - **Abstract classes**
+- **Action classes**
 - **Traits**
-- **Concrete classes**
 - **Lambdas**
+- **Concrete classes for Turtles, Actions, and Observers**
 - **Design patterns - Factory, Observer and Decorator**
 - **Unit Tests**
 
@@ -15,4 +16,5 @@
 - **Inflexible, static and rotten**
 
 
-Same output, but differing quality.
+Same output, but differing quality. 
+**Cowabunga dude!**
