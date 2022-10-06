@@ -2,6 +2,8 @@
 
 namespace App\Turtles\Contracts;
 
+use Closure;
+
 interface TurtleContract
 {
     /**
