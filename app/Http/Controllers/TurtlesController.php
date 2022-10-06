@@ -16,7 +16,8 @@ class TurtlesController extends Controller
      */
     public function good(Request $request): View
     {
-        dd('here', (new CreateLeonardoAction)()->notify()->toArray());
+        $leo = new CreateLeonardoAction();
+        dd('here');
         return view('welcome', [
             'turtles' => [
                 (new CreateLeonardoAction)()->notify()->toArray(),
