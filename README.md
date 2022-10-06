@@ -1,4 +1,4 @@
-### TMNT - An OOP example (route = /)
+### TMNT - An OOP example (route = '/')
 - **Factories**
 - **Enums**
 - **Interfaces**
@@ -9,7 +9,10 @@
 - **Design patterns - Factory, Observer and Decorator**
 - **Unit Tests**
 
-### TMNT - A code rot example (route = /bad)
+### TMNT - A code rot example (route = '/bad')
 
 - **Controller Monolith**
 - **Inflexible, static and rotten**
+
+
+Same output, but differing quality.
