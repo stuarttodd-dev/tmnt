@@ -16,6 +16,7 @@ class CreateLeonardoAction
      */
     public function __invoke(): TurtleContract
     {
+        dd('here');
         return Turtle::make(TMNT::LEO)
             ->attach(new CounterAttackObserver());
     }
