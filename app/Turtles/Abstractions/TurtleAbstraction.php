@@ -61,9 +61,9 @@ abstract class TurtleAbstraction implements TurtleContract
     {
         return [
             'name' => $this->name,
-            'description' => $this->description,
-            'avatar' => $this->avatar,
-            'health_points' => $this->healthPoints,
+//            'description' => $this->description,
+//            'avatar' => $this->avatar,
+//            'health_points' => $this->healthPoints,
 //            'default_attack' => $this->attack(),
 //            'default_damage_reaction' =>  $this->eventLogs,
         ];
