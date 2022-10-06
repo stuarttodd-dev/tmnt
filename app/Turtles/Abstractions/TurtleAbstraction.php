@@ -59,6 +59,7 @@ abstract class TurtleAbstraction implements TurtleContract
      */
     public function toArray(): array
     {
+        dd($this);
         return [
             'name' => $this->name,
 //            'description' => $this->description,
