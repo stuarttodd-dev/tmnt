@@ -36,22 +36,32 @@ abstract class TurtleAbstraction implements TurtleContract
     public int $healthPoints = 0;
 
     /**
-     * When a turtle attacks
+     * A turtles attack combo
      */
-    public function attack(): string
+    public function attackCombo(): string
     {
         return (new BasicAttack)->executeAttack();
     }
 
-    public function damage(?Closure $damage = null): void
+    /**
+     * @param Closure $closure
+     *
+     * @return $this
+     */
+    public function action(Closure $closure): self
     {
-        // Using a lambda here to manipulate the object on the fly.
-        if ($damage !== null) {
-            $damage($this);
-        }
+        return $closure($this);
+    }
 
-        // When a turtle takes damage we notify the observers.
-        $this->notify();
+    /**
+     * @param string $log
+     */
+    public function addEventLog(string $log): void
+    {
+        $this->eventLogs[time() . '_' . count($this->eventLogs)+1] = [
+            'turtle' => $this->toArray(), // Snapshot of the turtle at the time of the event.
+            'log' => $log
+        ];
     }
 
     /**
@@ -64,7 +74,7 @@ abstract class TurtleAbstraction implements TurtleContract
             'description' => $this->description,
             'avatar' => $this->avatar,
             'health_points' => $this->healthPoints,
-            'default_attack' => $this->attack(),
+            'default_attack' => $this->attackCombo(),
             'default_damage_reaction' =>  $this->eventLogs,
         ];
     }

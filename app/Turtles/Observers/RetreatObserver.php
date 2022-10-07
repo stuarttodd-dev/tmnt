@@ -2,13 +2,23 @@
 
 namespace App\Turtles\Observers;
 
-use App\Turtles\Attacks\BasicAttack;
-use App\Turtles\Attacks\BoStaffHitAttack;
-use App\Turtles\Attacks\SpinAttack;
-use App\Turtles\Contracts\ObserverContract;
+use App\Turtles\Abstractions\ObserverAbstraction;
+use App\Turtles\Contracts\TurtleContract;
 
-class RetreatObserver implements ObserverContract
+class RetreatObserver extends ObserverAbstraction
 {
+    /**
+     * @param TurtleContract $turtle
+     *
+     * @return TurtleContract
+     */
+    public function transform(TurtleContract $turtle): TurtleContract
+    {
+        $turtle->healthPoints = 0;
+
+        return $turtle;
+    }
+
     /**
      * Do something
      */

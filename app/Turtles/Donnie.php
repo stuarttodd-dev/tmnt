@@ -7,6 +7,8 @@ use App\Turtles\Attacks\BasicAttack;
 use App\Turtles\Attacks\BoStaffHitAttack;
 use App\Turtles\Attacks\SpinAttack;
 
+use Closure;
+
 class Donnie extends TurtleAbstraction
 {
     /**
@@ -27,12 +29,17 @@ class Donnie extends TurtleAbstraction
     /**
      * @var int
      */
-    public int $healthPoints = 100;
+    public int $healthPoints = 500;
 
     /**
-     * When a turtle attacks
+     * @var string
      */
-    public function attack(): string
+    public string $classes = 'bg-purple bg-gradient';
+
+    /**
+     * A turtles attack combo
+     */
+    public function attackCombo(): string
     {
         $attack = new BasicAttack();
         $attack = new BoStaffHitAttack($attack);

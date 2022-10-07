@@ -2,12 +2,11 @@
 
 namespace App\Turtles\Observers;
 
+use App\Turtles\Abstractions\ObserverAbstraction;
 use App\Turtles\Attacks\BasicAttack;
-use App\Turtles\Attacks\BoStaffHitAttack;
 use App\Turtles\Attacks\SpinAttack;
-use App\Turtles\Contracts\ObserverContract;
 
-class CounterAttackObserver implements ObserverContract
+class CounterAttackObserver extends ObserverAbstraction
 {
     /**
      * Do something
@@ -15,7 +14,6 @@ class CounterAttackObserver implements ObserverContract
     public function execute(): string
     {
         $attack = new BasicAttack();
-        $attack = new BoStaffHitAttack($attack);
         $attack = new SpinAttack($attack);
 
         return 'COUNTER ATTACK: ' . $attack->executeAttack();

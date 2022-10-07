@@ -7,6 +7,8 @@ use App\Turtles\Attacks\BasicAttack;
 use App\Turtles\Attacks\SpinAttack;
 use App\Turtles\Attacks\UppercutAttack;
 
+use Closure;
+
 class Raph extends TurtleAbstraction
 {
     /**
@@ -27,12 +29,17 @@ class Raph extends TurtleAbstraction
     /**
      * @var int
      */
-    public int $healthPoints = 200;
+    public int $healthPoints = 900;
 
     /**
-     * When a turtle attacks
+     * @var string
      */
-    public function attack(): string
+    public string $classes = 'bg-danger bg-gradient';
+
+    /**
+     * A turtles attack combo
+     */
+    public function attackCombo(): string
     {
         $attack = new BasicAttack();
         $attack = new UppercutAttack($attack);

@@ -2,9 +2,10 @@
 
 namespace App\Turtles\Observers;
 
-use App\Turtles\Contracts\ObserverContract;
+use App\Turtles\Abstractions\ObserverAbstraction;
+use App\Turtles\Contracts\TurtleContract;
 
-class FeelSorryForYourselfObserver implements ObserverContract
+class FeelSorryForYourselfObserver extends ObserverAbstraction
 {
     /**
      * Do something

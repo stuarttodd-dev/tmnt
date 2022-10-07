@@ -45,10 +45,9 @@ trait ObserverSubject
      */
     public function notify(): self
     {
-        $eventId = time() . rand(0, 99999);
-
         foreach ($this->observers as $observer) {
-            $this->eventLogs[$eventId][] = $observer->execute();
+            $observer->transform($this);
+            $this->addEventLog($this->name . ' reacts.... ' . $observer->execute());
         }
 
         return $this;

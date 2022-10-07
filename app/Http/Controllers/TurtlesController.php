@@ -6,11 +6,40 @@ use App\Turtles\Actions\CreateDonatelloAction;
 use App\Turtles\Actions\CreateLeonardoAction;
 use App\Turtles\Actions\CreateMichealangeloAction;
 use App\Turtles\Actions\CreateRaphaelAction;
+use App\Turtles\Actions\CreateTMNTAction;
+use App\Turtles\Actions\GetEventLogsAction;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+use Cache;
+
 class TurtlesController extends Controller
 {
+    public function index(Request $request): View
+    {
+        $turtles = (new CreateTMNTAction)(
+            $request,
+            (new CreateLeonardoAction),
+            (new CreateRaphaelAction),
+            (new CreateDonatelloAction),
+            (new CreateMichealangeloAction)
+        );
+
+        $eventLogs = (new GetEventLogsAction)($turtles);
+
+        return view('tmnt', [
+            'turtles' => $turtles,
+            'eventLogs' => collect($eventLogs)->sortKeysDesc()->toArray(),
+        ]);
+    }
+
+    public function restart(Request $request)
+    {
+        Cache::forget($request->ip() . 'turtles');
+
+        return redirect("/");
+    }
+
     /**
      * Extendable solution
      */

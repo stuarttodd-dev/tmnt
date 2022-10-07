@@ -6,11 +6,10 @@ use App\Turtles\Contracts\AttackContract;
 
 class BasicAttack implements AttackContract
 {
-    const ATTACK = 'Kick!';
+    const ATTACK = 'Kickkkkkkk!';
 
     public function executeAttack(): string
     {
-        dump('here');
         return self::ATTACK;
     }
 }

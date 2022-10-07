@@ -7,14 +7,19 @@ use Closure;
 interface TurtleContract
 {
     /**
-     * When a turtle attacks
+     * A turtles attack combo
      */
-    public function attack(): string;
+    public function attackCombo(): string;
 
     /**
-     * When a turtle takes damage
+     * When a turtle takes an attack
      */
-    public function damage(?Closure $damage = null): void;
+    public function action(Closure $closure): self;
+
+    /**
+     * @param string $log
+     */
+    public function addEventLog(string $log): void;
 
     /**
      * @return array

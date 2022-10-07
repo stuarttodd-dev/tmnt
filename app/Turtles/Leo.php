@@ -27,12 +27,17 @@ class Leo extends TurtleAbstraction
     /**
      * @var int
      */
-    public int $healthPoints = 150;
+    public int $healthPoints = 750;
 
     /**
-     * When a turtle attacks
+     * @var string
      */
-    public function attack(): string
+    public string $classes = 'bg-primary bg-gradient';
+
+    /**
+     * A turtles attack combo
+     */
+    public function attackCombo(): string
     {
         $attack = new BasicAttack();
         $attack = new KatanaSwipeAttack($attack);
