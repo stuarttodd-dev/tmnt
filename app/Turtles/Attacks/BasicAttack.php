@@ -10,6 +10,7 @@ class BasicAttack implements AttackContract
 
     public function executeAttack(): string
     {
+        dump('here');
         return self::ATTACK;
     }
 }

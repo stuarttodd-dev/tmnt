@@ -15,5 +15,8 @@ use App\Http\Controllers\TurtlesController;
 |
 */
 
-Route::get('/', [TurtlesController::class, 'good']);
+Route::get('/', [TurtlesController::class, 'index']);
+Route::get('/good', [TurtlesController::class, 'good']);
 Route::get('/bad', [TurtlesController::class, 'bad']);
+Route::get('/restart', [TurtlesController::class, 'restart']);
+

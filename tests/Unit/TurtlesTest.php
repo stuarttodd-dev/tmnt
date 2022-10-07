@@ -6,13 +6,17 @@ use App\Turtles\Actions\CreateDonatelloAction;
 use App\Turtles\Actions\CreateLeonardoAction;
 use App\Turtles\Actions\CreateMichealangeloAction;
 use App\Turtles\Actions\CreateRaphaelAction;
+
 use App\Turtles\Contracts\TurtleContract;
+
 use App\Turtles\Exceptions\NotValidFactoryParameterException;
 use App\Turtles\Exceptions\NotValidTurtleException;
+
 use App\Turtles\Observers\CounterAttackObserver;
 use App\Turtles\Observers\EatPizzaObserver;
 use App\Turtles\Observers\FeelSorryForYourselfObserver;
 use App\Turtles\Observers\RetreatObserver;
+
 use PHPUnit\Framework\TestCase;
 
 use App\Turtles\Factories\Turtle;
@@ -64,16 +68,16 @@ class Turtles extends TestCase
     public function turtles_can_carry_out_an_attack()
     {
         // Turtles carrying out attacks
-        $leoAttack = Turtle::make(TMNT::LEO)->attack();
-        $raphAttack = Turtle::make(TMNT::RAPH)->attack();
-        $donnieAttack = Turtle::make(TMNT::DONNIE)->attack();
-        $mikeyAttack = Turtle::make(TMNT::MIKEY)->attack();
+        $leoAttack = Turtle::make(TMNT::LEO)->attackCombo();
+        $raphAttack = Turtle::make(TMNT::RAPH)->attackCombo();
+        $donnieAttack = Turtle::make(TMNT::DONNIE)->attackCombo();
+        $mikeyAttack = Turtle::make(TMNT::MIKEY)->attackCombo();
 
         // An example of a 'brittle' test, ideally we need to reference the action constants.
-        $this->assertStringContainsString('Kick! SWIPE! Katana attack!!! SPIIIIINNNNNN ATTACK!!!!', $leoAttack);
-        $this->assertStringContainsString('Kick! UPPER CUT!!! SPIIIIINNNNNN ATTACK!!!!', $raphAttack);
-        $this->assertStringContainsString('Kick! BO STAFF ATTACK! OUCH! SPIIIIINNNNNN ATTACK!!!!', $donnieAttack);
-        $this->assertStringContainsString('Kick! UPPER CUT!!! PiZZAAAAAAAAAA THROW! WOW!', $mikeyAttack);
+        $this->assertStringContainsString('Kickkkkkkk! SWIPE! Katana attack!!! SPIIIIINNNNNN ATTACK!!!!', $leoAttack);
+        $this->assertStringContainsString('Kickkkkkkk! UPPER CUT!!! SPIIIIINNNNNN ATTACK!!!!', $raphAttack);
+        $this->assertStringContainsString('Kickkkkkkk! BO STAFF ATTACK! OUCH! SPIIIIINNNNNN ATTACK!!!!', $donnieAttack);
+        $this->assertStringContainsString('Kickkkkkkk! UPPER CUT!!! PiZZAAAAAAAAAA THROW! WOW!', $mikeyAttack);
     }
 
     /**
@@ -87,7 +91,7 @@ class Turtles extends TestCase
 
         $mikeyDamage = 95;
         $mikeyHPBefore = $mikey->healthPoints;
-        $mikey->damage(function ($turtle) use ($mikeyDamage) {
+        $mikey->action(function ($turtle) use ($mikeyDamage) {
             $turtle->healthPoints -= $mikeyDamage;
             // Potentially do other stuff here...
             return $turtle;
@@ -96,7 +100,7 @@ class Turtles extends TestCase
 
         $leoDamage = 70;
         $leoHPBefore = $leo->healthPoints;
-        $leo->damage(function ($turtle) use ($leoDamage) {
+        $leo->action(function ($turtle) use ($leoDamage) {
             $turtle->healthPoints -= $leoDamage;
             // Potentially do other stuff here...
             return $turtle;
@@ -118,9 +122,9 @@ class Turtles extends TestCase
         $raph = Turtle::make(TMNT::RAPH);
 
         $raph->attach(new CounterAttackObserver()); // could write unit tests here but its type-hinted anyway.
-        $raph->damage(function($turtle) {
+        $raph->action(function($turtle) {
             $turtle->healthPoints -= 100;
-            return $turtle;
+            return $turtle->notify();
         });
 
         $this->assertCount(1, $raph->observers);
@@ -135,10 +139,10 @@ class Turtles extends TestCase
         $this->assertCount(1, $raph->observers);
 
         // Take damage
-        $raph->damage(function($turtle) {
+        $raph->action(function($turtle) {
             $turtle->healthPoints -= 50;
             // You could attach / detach observers here potentially.
-            return $turtle;
+            return $turtle->notify();
         });
 
         $this->assertCount(2, $raph->eventLogs);
@@ -152,12 +156,12 @@ class Turtles extends TestCase
 
         $this->assertCount(3, $mikey->observers);
 
-        $mikey->damage(function($turtle) {
+        $mikey->action(function($turtle) {
             $turtle->healthPoints -= 50;
-            return $turtle;
+            return $turtle->notify();
         });
 
-        $this->assertCount(1, $mikey->eventLogs);
+        $this->assertCount(3, $mikey->eventLogs);
     }
 
     /**
@@ -165,13 +169,13 @@ class Turtles extends TestCase
      */
     public function can_defer_to_action_objects()
     {
-        // Specify at run-time can be logic heavy... especially in controllers
+        // Specifying in various places can be logic heavy... especially in controllers
         // Action objects make stuff simplified and accessible throughout the app.
 
         $donnie = (new CreateDonatelloAction)();
-        $mikey = (new CreateMichealangeloAction())();
-        $leo = (new CreateLeonardoAction())();
-        $raph = (new CreateRaphaelAction())();
+        $mikey = (new CreateMichealangeloAction)();
+        $leo = (new CreateLeonardoAction)();
+        $raph = (new CreateRaphaelAction)();
 
         $this->assertTrue($leo instanceof TurtleContract);
         $this->assertTrue($raph instanceof TurtleContract);

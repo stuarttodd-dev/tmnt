@@ -10,6 +10,7 @@ class BoStaffHitAttack extends AttackAbstraction
 
     public function executeAttack(): string
     {
+        dump('here');
         return $this->attack->executeAttack() . ' ' . self::ATTACK;
     }
 }
