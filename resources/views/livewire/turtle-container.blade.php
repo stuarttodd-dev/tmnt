@@ -37,7 +37,7 @@
                 </svg>
                 <span class="visually-hidden">Button</span>
             </button>
-            <button type="button" wire:click.prevent="updateObserver('CounterAttackObserver)" class="btn btn-outline-secondary {{ in_array('CounterAttackObserver', $reactions) ? 'bg-black' : '' }}" title="Counter attack">
+            <button type="button" wire:click.prevent="updateObserver('CounterAttackObserver')" class="btn btn-outline-secondary {{ in_array('CounterAttackObserver', $reactions) ? 'bg-black' : '' }}" title="Counter attack">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-left-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
