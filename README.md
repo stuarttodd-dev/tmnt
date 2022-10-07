@@ -1,4 +1,4 @@
-### TMNT - An OOP example (visit 'http://134.209.64.251/')
+### TMNT - An OOP example (visit 'http://54.242.43.207/')
 - **Factories**
 - **Enums**
 - **Interfaces**
@@ -10,7 +10,7 @@
 - **Design patterns - Factory, Observer and Decorator**
 - **Unit Tests**
 
-### TMNT - A code rot example (visit 'http://134.209.64.251/bad')
+### TMNT - A code rot example (visit 'http://54.242.43.207/bad')
 
 - **Controller Monolith**
 - **Inflexible, static and rotten**
