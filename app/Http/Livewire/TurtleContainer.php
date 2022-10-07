@@ -65,7 +65,7 @@ class TurtleContainer extends Component
         $turtle = $turtles[$this->name];
 
         $turtle->action(function ($turtle) {
-            $damage = rand(10, $this->healthPoints);
+            $damage = rand(200, 500);
             $turtle->healthPoints -= $damage;
             $turtle->addEventLog($turtle->name . ' takes ' . $damage . ' damage!');
 
